@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 var homeRouter = require('./router/home.js')
+var dailyLifeRouter = require('./router/dailyLife.js')
 var bodyParser = require('body-parser');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/home',homeRouter)
+app.use('/dailyLife',dailyLifeRouter)
 
 var server = app.listen(9999, function () {
     var host = server.address().address
