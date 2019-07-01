@@ -11,5 +11,10 @@ router.post('/img',upload.single('file'),async (req, res)=>{
     file.url = `http://localhost:9999/uploads/${file.filename}`
     res.send(file)
 })
+router.post('/mp3',upload.single('file'),async (req, res)=>{
+    const file = req.file
+    file.url = `http://localhost:9999/uploads/${file.filename}`
+    res.send(file)
+})
 
 module.exports = router
