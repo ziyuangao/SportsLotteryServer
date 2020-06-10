@@ -105,4 +105,56 @@ router.post('/signIn',urlencodedParser,(req,res)=>{
     })
 })
 
+router.post('/test',urlencodedParser,(req,res)=>{
+    var dataObj = req.body;
+    let obj = {
+        code:200,
+        msg:'success',
+        data:dataObj
+    }
+    res.send(obj)
+})
+
+router.post('/getList',urlencodedParser,(req,res)=>{
+    var dataObj = req.body;
+    let obj = {
+        code:200,
+        message:'success',
+        data:[],
+        total:undefined
+    }
+    db.find('test',{skip:((dataObj.skip*1)-1)*dataObj.limit*1,limit:dataObj.limit*1},(err,data)=>{
+        if(err) throw err
+        if(data){
+            obj.data = data
+        }
+        db.count('test',{},(err,data)=>{
+            if(err) throw err
+            if(data){
+               obj.total = data;
+            }
+            res.send(obj)
+        })
+    })
+})
+router.post('/insertOne',urlencodedParser,(req,res)=>{
+    let dataObj = {
+        a:random(0,10),
+        b:random(10,20),
+        c:random(20,30),
+        d:random(30,40),
+        e:random(40,50),
+    }
+    db.insertOne('test',dataObj,(err,data)=>{
+        if (err) throw err
+        if(data){
+            res.send({
+                code:200,
+                message:'success',
+                data:data
+            })
+        }
+    })
+})
+
 module.exports = router

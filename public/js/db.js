@@ -199,7 +199,7 @@ exports.updateById = function(collectionName,id,update,callback){
 
 exports.count = function(collectionName,query,callback){
 	connect(function(dbase){
-		dbase.collection(collectionName).count(query,function(err,data){
+		dbase.collection(collectionName).estimatedDocumentCount(query,function(err,data){
 			callback(err,data)
 		})
 	})
