@@ -1,5 +1,5 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 // var homeRouter = require('./router/home.js')
 var dailyLifeRouter = require('./router/dailyLife.js')
 // var uploadRouter = require('./router/uploadRouter.js')
